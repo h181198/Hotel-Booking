@@ -1,0 +1,2 @@
+C:\Users\ander\source\repos\ClassLibrary1\Booking\obj\Debug\Booking.csprojAssemblyReference.cache
+C:\Users\ander\source\repos\ClassLibrary1\Booking\obj\Debug\Booking.csproj.CoreCompileInputs.cache
