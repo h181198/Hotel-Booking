@@ -31,8 +31,21 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Data.SqlClient, Version=4.5.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Data.SqlClient.4.6.0\lib\net461\System.Data.SqlClient.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -41,19 +54,64 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Model\Note.cs" />
-    <Compile Include="Model\Quality.cs" />
-    <Compile Include="Model\Reservation.cs" />
-    <Compile Include="Model\Room.cs" />
-    <Compile Include="Model\Status.cs" />
-    <Compile Include="Model\Task.cs" />
+    <Compile Include="Model\BookingContext.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>BookingContext.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\BookingContext.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>BookingContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\BookingContext.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>BookingContext.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Model\reservation.cs">
+      <DependentUpon>BookingContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\room.cs">
+      <DependentUpon>BookingContext.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Model\task.cs">
+      <DependentUpon>BookingContext.tt</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Service\IReservationManager.cs" />
-    <Compile Include="Service\IRoomManager.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Common\" />
     <Folder Include="Database\" />
+    <Folder Include="Service\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
+    <EntityDeploy Include="Model\BookingContext.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>BookingContext.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="Model\BookingContext.edmx.diagram">
+      <DependentUpon>BookingContext.edmx</DependentUpon>
+    </None>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Model\BookingContext.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>BookingContext.edmx</DependentUpon>
+      <LastGenOutput>BookingContext.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Model\BookingContext.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>BookingContext.edmx</DependentUpon>
+      <LastGenOutput>BookingContext.cs</LastGenOutput>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -7,6 +7,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Booking", "Booking\Booking.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Booking.UnitTests", "Booking.UnitTests\Booking.UnitTests.csproj", "{8F75B743-E4D3-4E78-A4A3-E746FDA1E3F4}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BookingProgram", "BookingProgram\BookingProgram.csproj", "{00058C18-58DF-44A1-9232-EB05F60A284A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestFix", "TestFix\TestFix.csproj", "{4073C0CF-7E55-4AD8-B215-900440A8E2C5}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +25,14 @@ Global
 		{8F75B743-E4D3-4E78-A4A3-E746FDA1E3F4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8F75B743-E4D3-4E78-A4A3-E746FDA1E3F4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8F75B743-E4D3-4E78-A4A3-E746FDA1E3F4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{00058C18-58DF-44A1-9232-EB05F60A284A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{00058C18-58DF-44A1-9232-EB05F60A284A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{00058C18-58DF-44A1-9232-EB05F60A284A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{00058C18-58DF-44A1-9232-EB05F60A284A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4073C0CF-7E55-4AD8-B215-900440A8E2C5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4073C0CF-7E55-4AD8-B215-900440A8E2C5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4073C0CF-7E55-4AD8-B215-900440A8E2C5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4073C0CF-7E55-4AD8-B215-900440A8E2C5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
