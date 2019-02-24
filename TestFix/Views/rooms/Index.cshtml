@@ -1,10 +1,10 @@
 ﻿@model IEnumerable<TestFix.Models.room>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Rooms";
 }
 
-<h2>Index</h2>
+<h2>All rooms</h2>
 
 <p>
     @Html.ActionLink("Create New", "Create")
@@ -12,19 +12,27 @@
 <table class="table">
     <tr>
         <th>
-            @Html.DisplayNameFor(model => model.beds)
+            Room number
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.quality)
+            Number of beds
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.status)
+            Overall quality
         </th>
-        <th></th>
+        <th>
+            Room status
+        </th>
+        <th>
+            Action
+        </th>
     </tr>
 
 @foreach (var item in Model) {
     <tr>
+        <td>
+            @Html.DisplayFor(model => item.id)
+        </td>
         <td>
             @Html.DisplayFor(modelItem => item.beds)
         </td>
@@ -35,9 +43,9 @@
             @Html.DisplayFor(modelItem => item.status)
         </td>
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.id })
+            @Html.ActionLink("Edit", "Edit", new { id = item.id }) |
+            @Html.ActionLink("Details", "Details", new { id = item.id }) |
+            @Html.ActionLink("Delete", "Delete", new { id = item.id })
         </td>
     </tr>
 }

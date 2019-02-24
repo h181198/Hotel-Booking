@@ -4,7 +4,7 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<h2>To be removed I believe</h2>
 
 <p>
     @Html.ActionLink("Create New", "Create")
@@ -21,7 +21,7 @@
             @Html.DisplayNameFor(model => model.completed_at)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.room.quality)
+            @Html.DisplayNameFor(model => model.room.id)
         </th>
         <th></th>
     </tr>
@@ -38,7 +38,7 @@
             @Html.DisplayFor(modelItem => item.completed_at)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.room.quality)
+            @Html.DisplayFor(modelItem => item.room.id)
         </td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.id }) |

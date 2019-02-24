@@ -39,7 +39,7 @@ namespace TestFix.Controllers
         // GET: tasks/Create
         public ActionResult Create()
         {
-            ViewBag.room_id = new SelectList(db.rooms, "id", "quality");
+            ViewBag.room_id = new SelectList(db.rooms, "id", "id");
             return View();
         }
 
@@ -57,7 +57,7 @@ namespace TestFix.Controllers
                 return RedirectToAction("Index");
             }
 
-            ViewBag.room_id = new SelectList(db.rooms, "id", "quality", task.room_id);
+            ViewBag.room_id = new SelectList(db.rooms, "id", "id", task.room_id);
             return View(task);
         }
 
@@ -73,7 +73,7 @@ namespace TestFix.Controllers
             {
                 return HttpNotFound();
             }
-            ViewBag.room_id = new SelectList(db.rooms, "id", "quality", task.room_id);
+            ViewBag.room_id = new SelectList(db.rooms, "id", "id", task.room_id);
             return View(task);
         }
 
@@ -90,7 +90,7 @@ namespace TestFix.Controllers
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.room_id = new SelectList(db.rooms, "id", "quality", task.room_id);
+            ViewBag.room_id = new SelectList(db.rooms, "id", "id", task.room_id);
             return View(task);
         }
 
