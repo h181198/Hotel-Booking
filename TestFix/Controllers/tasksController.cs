@@ -8,9 +8,9 @@ using System.Web;
 using System.Web.Mvc;
 using Core.Models;
 
-namespace TestFix.Controllers
+namespace Web.Controllers
 {
-    public class tasksController : Controller
+    public class TasksController : Controller
     {
         private BookingEntities db = new BookingEntities();
 

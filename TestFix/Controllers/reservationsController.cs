@@ -1,16 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
+﻿using Core.Models;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
-using System.Web;
 using System.Web.Mvc;
-using Core.Models;
 
-namespace TestFix.Controllers
+namespace Web.Controllers
 {
-    public class reservationsController : Controller
+    public class ReservationsController : Controller
     {
         private BookingEntities db = new BookingEntities();
 
