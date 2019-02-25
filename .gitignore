@@ -1,2 +1,13 @@
 # Visual studio cache/options
 .vs/
+
+# IntelliJ
+.idea/
+*.iml
+
+# .NET
+*/obj/
+*/bin/
+
+# macOS
+.DS_Store
