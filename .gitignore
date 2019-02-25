@@ -1,2 +1,7 @@
+# IntelliJ
+.idea/
+*.iml
+
 # Visual studio cache/options
 .vs/
+
