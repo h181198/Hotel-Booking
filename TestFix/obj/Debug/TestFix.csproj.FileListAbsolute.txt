@@ -82,3 +82,6 @@ C:\Users\ander\source\repos\ClassLibrary1\TestFix\obj\Debug\TestFix.csproj.CoreC
 C:\Users\ander\source\repos\ClassLibrary1\TestFix\obj\Debug\TestFix.csproj.CopyComplete
 C:\Users\ander\source\repos\ClassLibrary1\TestFix\obj\Debug\TestFix.dll
 C:\Users\ander\source\repos\ClassLibrary1\TestFix\obj\Debug\TestFix.pdb
+C:\Users\ander\source\repos\ClassLibrary1\TestFix\bin\Core.dll
+C:\Users\ander\source\repos\ClassLibrary1\TestFix\bin\Core.pdb
+C:\Users\ander\source\repos\ClassLibrary1\TestFix\bin\Core.dll.config

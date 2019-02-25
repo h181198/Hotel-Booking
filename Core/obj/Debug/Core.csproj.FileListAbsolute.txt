@@ -1,0 +1,11 @@
+C:\Users\ander\source\repos\ClassLibrary1\Core\bin\Debug\Core.dll.config
+C:\Users\ander\source\repos\ClassLibrary1\Core\bin\Debug\Core.dll
+C:\Users\ander\source\repos\ClassLibrary1\Core\bin\Debug\Core.pdb
+C:\Users\ander\source\repos\ClassLibrary1\Core\bin\Debug\EntityFramework.dll
+C:\Users\ander\source\repos\ClassLibrary1\Core\bin\Debug\EntityFramework.SqlServer.dll
+C:\Users\ander\source\repos\ClassLibrary1\Core\bin\Debug\EntityFramework.xml
+C:\Users\ander\source\repos\ClassLibrary1\Core\bin\Debug\EntityFramework.SqlServer.xml
+C:\Users\ander\source\repos\ClassLibrary1\Core\obj\Debug\Core.csproj.CoreCompileInputs.cache
+C:\Users\ander\source\repos\ClassLibrary1\Core\obj\Debug\Core.csproj.CopyComplete
+C:\Users\ander\source\repos\ClassLibrary1\Core\obj\Debug\Core.dll
+C:\Users\ander\source\repos\ClassLibrary1\Core\obj\Debug\Core.pdb
