@@ -8,6 +8,7 @@
     <Property Name="room_id" Type="int" Nullable="false" />
     <Property Name="start_time" Type="datetime" Nullable="false" />
     <Property Name="end_time" Type="datetime" Nullable="false" />
+    <Property Name="user_id" Type="int" />
   </EntityType>
   <EntityType Name="rooms">
     <Key>
@@ -28,6 +29,14 @@
     <Property Name="created_at" Type="datetime" Nullable="false" />
     <Property Name="completed_at" Type="datetime" />
   </EntityType>
+  <EntityType Name="users">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" Nullable="false" />
+    <Property Name="email" Type="varchar" MaxLength="256" Nullable="false" />
+    <Property Name="password" Type="varchar" MaxLength="256" Nullable="false" />
+  </EntityType>
   <Association Name="FK_reservations_rooms">
     <End Role="rooms" Type="Self.rooms" Multiplicity="1" />
     <End Role="reservations" Type="Self.reservations" Multiplicity="*" />
@@ -37,6 +46,18 @@
       </Principal>
       <Dependent Role="reservations">
         <PropertyRef Name="room_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_reservations_users">
+    <End Role="users" Type="Self.users" Multiplicity="0..1" />
+    <End Role="reservations" Type="Self.reservations" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="users">
+        <PropertyRef Name="id" />
+      </Principal>
+      <Dependent Role="reservations">
+        <PropertyRef Name="user_id" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -56,8 +77,13 @@
     <EntitySet Name="reservations" EntityType="Self.reservations" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="rooms" EntityType="Self.rooms" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="tasks" EntityType="Self.tasks" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="users" EntityType="Self.users" Schema="dbo" store:Type="Tables" />
     <AssociationSet Name="FK_reservations_rooms" Association="Self.FK_reservations_rooms">
       <End Role="rooms" EntitySet="rooms" />
+      <End Role="reservations" EntitySet="reservations" />
+    </AssociationSet>
+    <AssociationSet Name="FK_reservations_users" Association="Self.FK_reservations_users">
+      <End Role="users" EntitySet="users" />
       <End Role="reservations" EntitySet="reservations" />
     </AssociationSet>
     <AssociationSet Name="FK_tasks_rooms" Association="Self.FK_tasks_rooms">

@@ -8,6 +8,7 @@
           <ScalarProperty Name="room_id" ColumnName="room_id" />
           <ScalarProperty Name="start_time" ColumnName="start_time" />
           <ScalarProperty Name="end_time" ColumnName="end_time" />
+          <ScalarProperty Name="user_id" ColumnName="user_id" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
@@ -29,6 +30,15 @@
           <ScalarProperty Name="type" ColumnName="type" />
           <ScalarProperty Name="created_at" ColumnName="created_at" />
           <ScalarProperty Name="completed_at" ColumnName="completed_at" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="users">
+      <EntityTypeMapping TypeName="BookingModel.user">
+        <MappingFragment StoreEntitySet="users">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="password" ColumnName="password" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

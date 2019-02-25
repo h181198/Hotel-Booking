@@ -4,11 +4,13 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="b27055552796487686905b32e9564ab4" Name="Diagram1">
-        <EntityTypeShape EntityType="BookingModel.reservation" Width="1.5" PointX="3" PointY="1.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="BookingModel.room" Width="1.5" PointX="0.75" PointY="2.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="BookingModel.task" Width="1.5" PointX="3" PointY="3.75" IsExpanded="true" />
+      <Diagram DiagramId="7aa2e2ea8ae740d897209092203d4455" Name="Diagram1">
+        <EntityTypeShape EntityType="BookingModel.reservation" Width="1.5" PointX="3" PointY="3.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="BookingModel.room" Width="1.5" PointX="0.75" PointY="3.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="BookingModel.task" Width="1.5" PointX="3" PointY="6.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="BookingModel.user" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
         <AssociationConnector Association="BookingModel.FK_reservations_rooms" ManuallyRouted="false" />
+        <AssociationConnector Association="BookingModel.FK_reservations_users" ManuallyRouted="false" />
         <AssociationConnector Association="BookingModel.FK_tasks_rooms" ManuallyRouted="false" />
       </Diagram>
     </edmx:Diagrams>

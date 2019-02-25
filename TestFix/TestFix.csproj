@@ -165,6 +165,9 @@
     <Compile Include="Models\task.cs">
       <DependentUpon>BookingModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\user.cs">
+      <DependentUpon>BookingModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

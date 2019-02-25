@@ -28,5 +28,6 @@ namespace TestFix.Models
         public virtual DbSet<reservation> reservations { get; set; }
         public virtual DbSet<room> rooms { get; set; }
         public virtual DbSet<task> tasks { get; set; }
+        public virtual DbSet<user> users { get; set; }
     }
 }
