@@ -12,8 +12,8 @@
     <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>TestFix</RootNamespace>
-    <AssemblyName>TestFix</AssemblyName>
+    <RootNamespace>Web</RootNamespace>
+    <AssemblyName>Web</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <MvcBuildViews>false</MvcBuildViews>
     <UseIISExpress>true</UseIISExpress>
@@ -135,9 +135,9 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\reservationsController.cs" />
-    <Compile Include="Controllers\roomsController.cs" />
-    <Compile Include="Controllers\tasksController.cs" />
+    <Compile Include="Controllers\ReservationsController.cs" />
+    <Compile Include="Controllers\RoomsController.cs" />
+    <Compile Include="Controllers\TasksController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -184,11 +184,11 @@
     <Content Include="Views\rooms\Details.cshtml" />
     <Content Include="Views\rooms\Edit.cshtml" />
     <Content Include="Views\rooms\Index.cshtml" />
-    <Content Include="Views\reservations\Create.cshtml" />
-    <Content Include="Views\reservations\Delete.cshtml" />
-    <Content Include="Views\reservations\Details.cshtml" />
-    <Content Include="Views\reservations\Edit.cshtml" />
-    <Content Include="Views\reservations\Index.cshtml" />
+    <Content Include="Views\Reservations\Create.cshtml" />
+    <Content Include="Views\Reservations\Delete.cshtml" />
+    <Content Include="Views\Reservations\Details.cshtml" />
+    <Content Include="Views\Reservations\Edit.cshtml" />
+    <Content Include="Views\Reservations\Index.cshtml" />
     <Content Include="Views\tasks\Create.cshtml" />
     <Content Include="Views\tasks\Delete.cshtml" />
     <Content Include="Views\tasks\Details.cshtml" />
