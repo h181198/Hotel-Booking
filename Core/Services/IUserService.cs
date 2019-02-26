@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Core.Services
 {
-    interface IUserService
+    public interface IUserService
     {
         /** 
          *  Adds the user to the database.
@@ -24,6 +24,11 @@ namespace Core.Services
          * Find a user from id.
          **/
         user Find(int id);
+
+        /**
+         * Find a user from email
+         **/
+        List<user> FindEmail(string email);
 
         /**
          * Delete the user from the database.

@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Core.Services
 {
-    interface ITaskService
+    public interface ITaskService
     {
         /** 
          *  Adds the task to the database.

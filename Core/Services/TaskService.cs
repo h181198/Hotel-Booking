@@ -8,12 +8,14 @@ using Core.Models;
 
 namespace Core.Services
 {
-    class TaskService : ITaskService
+    public class TaskService : ITaskService
     {
         private BookingEntities db = new BookingEntities();
 
         public void Add(task task)
         {
+            int newId = db.tasks.ToList().Last().id + 1;
+            task.id = newId;
             db.tasks.Add(task);
             db.SaveChanges();
         }

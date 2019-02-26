@@ -1,19 +1,19 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data.Entity;
+﻿using Core.Models;
+using System;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Core.Models;
+using System.Data.Entity;
+using System.Collections.Generic;
 
 namespace Core.Services
 {
-    class ReservationService : IReservationService
+    public class ReservationService : IReservationService
     {
         private BookingEntities db = new BookingEntities();
 
         public void Add(reservation reservation)
         {
+            int newId = db.reservations.ToList().Last().id + 1;
+            reservation.id = newId;
             db.reservations.Add(reservation);
             db.SaveChanges();
         }
@@ -31,6 +31,21 @@ namespace Core.Services
         public reservation Find(int id)
         {
             return db.reservations.Find(id);
+        }
+
+        public List<reservation> FindRoomReservations(int roomId)
+        {
+            return db.reservations.Where(res => res.room_id == roomId).ToList();
+        }
+
+        public List<reservation> FindReservationInterval(DateTime startDate, DateTime endDate)
+        {
+            return db.reservations.Where(res => res.start_time > startDate && res.end_time < endDate).ToList();
+        }
+
+        public List<reservation> FindReservationUser(int userId)
+        {
+            return db.reservations.Where(res => res.user_id == userId).ToList();
         }
 
         public DbSet<reservation> GetAll()

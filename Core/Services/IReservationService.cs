@@ -2,13 +2,10 @@
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Core.Services
 {
-    interface IReservationService
+    public interface IReservationService
     {
         /** 
          *  Adds the reservation to the database.
@@ -24,6 +21,21 @@ namespace Core.Services
          * Find a reservation from id.
          **/
         reservation Find(int id);
+
+        /**
+         * Find all reservation with a room id.
+         */
+        List<reservation> FindRoomReservations(int roomId);
+
+        /**
+         * Find all reservations in an interval
+         */
+        List<reservation> FindReservationInterval(DateTime startDate, DateTime endDate);
+
+        /**
+         * Find reservaitons for a user id
+         */
+        List<reservation> FindReservationUser(int userId);
 
         /**
          * Delete the reservation from the database.

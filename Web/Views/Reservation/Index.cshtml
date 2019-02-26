@@ -1,0 +1,39 @@
+﻿@model Web.Model.ReservationIndexModel
+
+<div class="jumbotron">
+    <h1>Reservations</h1>
+</div>
+
+<div class="row">
+    <div class="col-6">
+        @if (Model.Reservations.Any())
+        {
+            <table class="table table-bordered table-striped">
+                <tr>
+                    <th>Romnummer</th>
+                    <th>Start</th>
+                    <th>Slutt</th>
+                </tr>
+            @foreach(var reservation in Model.Reservations)
+            {
+                <tr>
+                    <td>
+                        @reservation.room_id
+                    </td>
+                    <td>
+                        @reservation.start_time
+                    </td>
+                    <td>
+                        @reservation.end_time
+                    </td>
+                </tr>
+            }
+            </table>
+        }
+        else
+        {
+            <h3>No Upcoming Reservations</h3>
+        }
+    </div>
+
+</div>

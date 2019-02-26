@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Core.Services
 {
-    interface IRoomService
+    public interface IRoomService
     {
         /** 
          *  Adds the room to the database.
@@ -24,6 +24,11 @@ namespace Core.Services
          * Find a room from id.
          **/
         room Find(int id);
+
+        /**
+         * Find room(s) from number of beds.
+         **/
+        List<room> FindRoomsFromBeds(int beds);
 
         /**
          * Delete the room from the database.

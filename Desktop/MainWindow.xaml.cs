@@ -1,38 +1,32 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Desktop.AddWindows;
 using System.Windows;
-using Core.Models;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-using System.Data.Entity;
 
 namespace Desktop
 {
     public partial class MainWindow : Window
     {
-        private readonly BookingEntities db = new BookingEntities();
-        private DbSet<room> rooms;
-        private DbSet<reservation> reservations;
-        private DbSet<task> tasks;
-        private DbSet<user> users;
 
         public MainWindow()
         {
-            rooms = db.rooms;
-            reservations = db.reservations;
-            tasks = db.tasks;
-            users = db.users;
-
             InitializeComponent();
+        }
+
+        private void ReservationButtonClicked(object sender, RoutedEventArgs e) 
+        {
+            var reservationWindow = new ReservationWindow();
+            reservationWindow.Show();
+        }
+
+        private void RoomButtonClicked(object sender, RoutedEventArgs e)
+        {
+            var roomWindow = new RoomWindow();
+            roomWindow.Show();
+        }
+
+        private void TaskButtonClicked(object sender, RoutedEventArgs e)
+        {
+            var addTaskWindow = new AddTaskWindow();
+            addTaskWindow.Show();
         }
     }
 }

@@ -2,13 +2,11 @@
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Core.Models;
 
 namespace Core.Services
 {
-    class RoomService : IRoomService
+    public class RoomService : IRoomService
     {
         private BookingEntities db = new BookingEntities();
 
@@ -34,33 +32,23 @@ namespace Core.Services
             return db.rooms.Find(id);
         }
 
+        public List<room> FindRoomsFromBeds(int beds)
+        {
+            return db.rooms.Where(r => r.beds == beds).ToList();
+        }
+
         public List<room> FindAvailable(DateTime startTime, DateTime endTime)
         {
-            List<room> availableRooms = null;
-            bool isAvailable;
+            var reservations = db.reservations.Where(res => (res.start_time < startTime && res.end_time > startTime) || 
+                                                  res.start_time < endTime && res.end_time > endTime).ToList();
+            List<room> rooms = db.rooms.ToList();
 
-            foreach (room r in db.rooms)
+            foreach (reservation res in reservations)
             {
-                isAvailable = true;
-                foreach(reservation res in db.reservations)
-                {
-                    bool startInterval = res.start_time < startTime && res.end_time > startTime;
-                    bool endInterval = res.start_time < endTime && res.end_time > endTime;
-
-                    if(res.room.Equals(r) && !startInterval || !endInterval)
-                    {
-                        isAvailable = false;
-                        break;
-                    }
-                }
-
-                if (isAvailable)
-                {
-                    availableRooms.Add(r);
-                }
+                rooms.Remove(res.room);
             }
 
-            return availableRooms;
+            return rooms;
         }
 
         public DbSet<room> GetAll()

@@ -8,12 +8,14 @@ using Core.Models;
 
 namespace Core.Services
 {
-    class UserService : IUserService
+    public class UserService : IUserService
     {
         private BookingEntities db = new BookingEntities();
 
         public void Add(user user)
         {
+            int newId = db.users.ToList().Last().id + 1;
+            user.id = newId;
             db.users.Add(user);
             db.SaveChanges();
         }
@@ -31,6 +33,11 @@ namespace Core.Services
         public user Find(int id)
         {
             return db.users.Find(id);
+        }
+
+        public List<user> FindEmail(string email)
+        {
+            return db.users.Where(u => u.email.Equals(email)).ToList();
         }
 
         public DbSet<user> GetAll()
