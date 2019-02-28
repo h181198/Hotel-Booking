@@ -1,128 +1,66 @@
 ﻿using Core.Models;
-using System.Data.Entity;
+using Core.Services;
+using System.Collections.Generic;
 using System.Linq;
-using System.Net;
 using System.Web.Mvc;
+using Web.Helpers;
+using Web.Model;
 
 namespace Web.Controllers
 {
     public class ReservationsController : Controller
     {
-        private BookingEntities db = new BookingEntities();
+        private readonly IReservationService reservationService = new ReservationService();
+        private readonly IRoomService roomService = new RoomService();
+        private readonly IUserService userService = new UserService();
 
         // GET: reservations
-        public ActionResult Index()
+        public ActionResult Index(string email = "")
         {
-            var reservations = db.reservations.Include(r => r.room);
-            return View(reservations.ToList());
-        }
-
-        // GET: reservations/Details/5
-        public ActionResult Details(int? id)
-        {
-            if (id == null)
+            if (string.IsNullOrEmpty(email))
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                return View(new ReservationIndexModel { Reservations = new List<ReservationModel>() });
             }
-            reservation reservation = db.reservations.Find(id);
-            if (reservation == null)
-            {
-                return HttpNotFound();
-            }
-            return View(reservation);
-        }
+            var user = userService.CreateIfAbsent(email);
+            var reservations = reservationService.FindReservationUser(user.id);
+            var reservationModel = ReservationHelper.ModelListTo(reservations);
 
+            return View(reservationModel);
+        }
+        
         // GET: reservations/Create
         public ActionResult Create()
         {
-            ViewBag.room_id = new SelectList(db.rooms, "id", "id");
+            var rooms = roomService.GetAll();
+            ViewBag.RoomId = new SelectList(rooms, "id", "id");
             return View();
         }
-
-        // POST: reservations/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
+        
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "id,room_id,start_time,end_time")] reservation reservation)
+        public ActionResult Create([Bind(Include = "Start,End,Email,Beds,Quality")] ReservationModel res)
         {
             if (ModelState.IsValid)
             {
-                db.reservations.Add(reservation);
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
+                var availableRooms = roomService.FindAvailable(res.Start, res.End);
+                var vacant = availableRooms.Find(room => room.beds == res.Beds && room.quality.ToLower() == res.Quality.ToLower());
 
-            ViewBag.room_id = new SelectList(db.rooms, "id", "id", reservation.room_id);
-            return View(reservation);
-        }
+                var user = userService.CreateIfAbsent(res.Email);
 
-        // GET: reservations/Edit/5
-        public ActionResult Edit(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            reservation reservation = db.reservations.Find(id);
-            if (reservation == null)
-            {
-                return HttpNotFound();
-            }
-            ViewBag.room_id = new SelectList(db.rooms, "id", "id", reservation.room_id);
-            return View(reservation);
-        }
+                if (vacant != null)
+                {
+                    reservation reservation = reservationService.CreateReservation(res.Start, res.End, user.id, vacant.id);
+                    reservationService.Add(reservation);
 
-        // POST: reservations/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "id,room_id,start_time,end_time")] reservation reservation)
-        {
-            if (ModelState.IsValid)
-            {
-                db.Entry(reservation).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-            ViewBag.room_id = new SelectList(db.rooms, "id", "id", reservation.room_id);
-            return View(reservation);
-        }
+                    return RedirectToAction("Index");
+                } else
+                {
+                    ViewBag.NotVacant = "No rooms that satisfy your needs are available at this moment.";
+                }
 
-        // GET: reservations/Delete/5
-        public ActionResult Delete(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            reservation reservation = db.reservations.Find(id);
-            if (reservation == null)
-            {
-                return HttpNotFound();
-            }
-            return View(reservation);
-        }
-
-        // POST: reservations/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
-        {
-            reservation reservation = db.reservations.Find(id);
-            db.reservations.Remove(reservation);
-            db.SaveChanges();
-            return RedirectToAction("Index");
-        }
-
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                db.Dispose();
-            }
-            base.Dispose(disposing);
+            
+            return View(res);
         }
     }
 }

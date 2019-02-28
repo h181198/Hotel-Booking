@@ -1,10 +1,5 @@
 ﻿using Core.Models;
-using System;
-using System.Collections.Generic;
 using System.Data.Entity;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Core.Services
 {
@@ -29,5 +24,10 @@ namespace Core.Services
          * Delete the task from the database.
          **/
         void Delete(task task);
+
+        /**
+         * Create a new task from data
+         **/
+        task CreateTask(string type, int room_id, string description);
     }
 }

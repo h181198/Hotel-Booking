@@ -1,9 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Core.Models;
 
 namespace Core.Services
@@ -15,9 +12,19 @@ namespace Core.Services
         public void Add(task task)
         {
             int newId = db.tasks.ToList().Last().id + 1;
+            
             task.id = newId;
             db.tasks.Add(task);
             db.SaveChanges();
+        }
+
+        public task CreateTask(string type, int room_id, string description)
+        {
+            task task = new task();
+            task.room_id = room_id;
+            task.created_at = DateTime.Today;
+            task.type = type + ": " + description;
+            return task;
         }
 
         public void Delete(task task)

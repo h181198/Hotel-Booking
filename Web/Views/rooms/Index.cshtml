@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Core.Models.room>
+﻿@model Web.Model.RoomSearchIndexModel
 
 @{
     ViewBag.Title = "Rooms";
@@ -6,48 +6,85 @@
 
 <h2>All rooms</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            Room number
-        </th>
-        <th>
-            Number of beds
-        </th>
-        <th>
-            Overall quality
-        </th>
-        <th>
-            Room status
-        </th>
-        <th>
-            Action
-        </th>
-    </tr>
+<form>
+    @Html.AntiForgeryToken()
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(model => item.id)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.beds)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.quality)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.status)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id = item.id }) |
-            @Html.ActionLink("Details", "Details", new { id = item.id }) |
-            @Html.ActionLink("Delete", "Delete", new { id = item.id })
-        </td>
-    </tr>
-}
+    <div class="form-horizontal">
+        <h4>Choose time and space for reservation</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(model => model.Search.Start, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Search.Start, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Search.Start, "", new { @class = "text-danger" })
+            </div>
+        </div>
 
-</table>
+        <div class="form-group">
+            @Html.LabelFor(model => model.Search.End, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Search.End, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Search.End, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Search.Beds, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Search.Beds, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Search.Beds, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Search.Quality, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Search.Quality, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Search.Quality, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Søk!" class="btn btn-primary" />
+            </div>
+        </div>
+    </div>
+</form>
+
+    <table class="table">
+        <tr>
+            <th>
+                Room number
+            </th>
+            <th>
+                Number of beds
+            </th>
+            <th>
+                Overall quality
+            </th>
+            <th>
+                Room status
+            </th>
+        </tr>
+
+        @foreach (var item in Model.Results)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(model => item.id)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.beds)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.quality)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.status)
+                </td>
+            </tr>
+        }
+
+    </table>

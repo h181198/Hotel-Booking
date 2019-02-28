@@ -25,7 +25,7 @@ namespace Desktop.AddWindows
         {
             if(isValidValues())
             {
-                room r = CreateRoom(int.Parse(bedsNr.Text), int.Parse(roomNr.Text), 
+                room r = roomService.CreateRoom(int.Parse(bedsNr.Text), int.Parse(roomNr.Text), 
                                     (string) quality.SelectedItem, (string) status.SelectedItem);
                 roomService.Add(r);
 
@@ -79,17 +79,6 @@ namespace Desktop.AddWindows
             }
 
             return isValid && status.SelectedItem != null && quality.SelectedItem != null;
-        }
-
-        private room CreateRoom(int beds, int roomNumber, string quality, string status)
-        {
-            room r = new room();
-            r.beds = beds;
-            r.id = roomNumber;
-            r.status = status;
-            r.quality = quality;
-
-            return r;
         }
 
         private void displayError(string error)

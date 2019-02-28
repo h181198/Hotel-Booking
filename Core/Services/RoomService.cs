@@ -24,7 +24,6 @@ namespace Core.Services
             }
             db.rooms.Remove(room);
             db.SaveChanges();
-            
         }
 
         public room Find(int id)
@@ -54,6 +53,26 @@ namespace Core.Services
         public DbSet<room> GetAll()
         {
             return db.rooms;
+        }
+
+        public void UpdateStatus(string status, room room)
+        {
+            var updatedRoom = Find(room.id);
+            updatedRoom.status = "Unclean";
+
+            db.SaveChanges();
+            
+        }
+
+        public room CreateRoom(int beds, int roomNumber, string quality, string status)
+        {
+            room r = new room();
+            r.beds = beds;
+            r.id = roomNumber;
+            r.status = status;
+            r.quality = quality;
+
+            return r;
         }
     }
 }

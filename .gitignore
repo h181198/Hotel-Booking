@@ -1,6 +1,11 @@
+# IntelliJ
+.idea/
+*.iml
+
 # Visual studio cache/options
 .vs/
 
+<<<<<<< HEAD
 # IntelliJ
 .idea/
 *.iml
@@ -11,3 +16,5 @@
 
 # macOS
 .DS_Store
+=======
+>>>>>>> d4ffb8ca413969834e9192cceec09f6892df6659

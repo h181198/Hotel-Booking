@@ -1,10 +1,6 @@
 ﻿using Core.Models;
-using System;
 using System.Collections.Generic;
 using System.Data.Entity;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Core.Services
 {
@@ -14,6 +10,11 @@ namespace Core.Services
          *  Adds the user to the database.
          **/
         void Add(user user);
+
+        /** 
+         *  Adds the user to the database.
+         **/
+        user Create(string email);
 
         /**
          * Get a list of all users.
@@ -34,5 +35,10 @@ namespace Core.Services
          * Delete the user from the database.
          **/
         void Delete(user user);
+
+        /**
+         * If user is not found, it is created.
+         **/
+        user CreateIfAbsent(string email);
     }
 }

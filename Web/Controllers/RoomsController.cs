@@ -1,127 +1,44 @@
-﻿using System;
+﻿using Core.Models;
+using Core.Services;
 using System.Collections.Generic;
-using System.Data;
-using System.Data.Entity;
-using System.Linq;
-using System.Net;
-using System.Web;
 using System.Web.Mvc;
-using Core.Models;
+using Web.Model;
 
 namespace Web.Controllers
 {
     public class RoomsController : Controller
     {
-        private BookingEntities db = new BookingEntities();
-
-        // GET: rooms
-        public ActionResult Index()
+        private readonly IRoomService roomService = new RoomService();
+        private readonly IReservationService reservationService = new ReservationService();
+        
+        [HttpGet]
+        public ActionResult Index(RoomSearch search)
         {
-            return View(db.rooms.ToList());
-        }
-
-        // GET: rooms/Details/5
-        public ActionResult Details(int? id)
-        {
-            if (id == null)
+            var rooms = new List<room>();
+            if (search.Start != null && search.End != null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            room room = db.rooms.Find(id);
-            if (room == null)
+                rooms.AddRange(roomService.FindAvailable(search.Start, search.End));
+            } else
             {
-                return HttpNotFound();
-            }
-            return View(room);
-        }
-
-        // GET: rooms/Create
-        public ActionResult Create()
-        {
-            return View();
-        }
-
-        // POST: rooms/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "id,beds,quality,status")] room room)
-        {
-            if (ModelState.IsValid)
-            {
-                db.rooms.Add(room);
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                rooms.AddRange(roomService.GetAll());
             }
 
-            return View(room);
-        }
+            if (search.Beds != 0)
+            {
+                rooms = rooms.FindAll(t => t.beds == search.Beds);
+            }
+            if (!string.IsNullOrEmpty(search.Quality))
+            {
+                rooms = rooms.FindAll(room => room.quality == search.Quality);
+            }
 
-        // GET: rooms/Edit/5
-        public ActionResult Edit(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            room room = db.rooms.Find(id);
-            if (room == null)
-            {
-                return HttpNotFound();
-            }
-            return View(room);
-        }
 
-        // POST: rooms/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "id,beds,quality,status")] room room)
-        {
-            if (ModelState.IsValid)
+            var model = new RoomSearchIndexModel
             {
-                db.Entry(room).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-            return View(room);
-        }
+                Results = rooms,
+            };
 
-        // GET: rooms/Delete/5
-        public ActionResult Delete(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            room room = db.rooms.Find(id);
-            if (room == null)
-            {
-                return HttpNotFound();
-            }
-            return View(room);
-        }
-
-        // POST: rooms/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
-        {
-            room room = db.rooms.Find(id);
-            db.rooms.Remove(room);
-            db.SaveChanges();
-            return RedirectToAction("Index");
-        }
-
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-            {
-                db.Dispose();
-            }
-            base.Dispose(disposing);
+            return View(model);
         }
     }
 }

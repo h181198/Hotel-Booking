@@ -1,10 +1,20 @@
-﻿@model IEnumerable<Core.Models.reservation>
+﻿@model Web.Model.ReservationIndexModel
 
 @{
     ViewBag.Title = "Reservations";
 }
 
 <h2>Room reservations</h2>
+
+<form>
+    <div class="form-group">
+        <label>Email</label>
+        <input name="email" type="email" class="form-control" />
+    </div>
+    <div class="form-group">
+        <input type="submit" class="btn btn-primary" value="Søk!" />
+    </div>
+</form>
 
 <div class="row">
     <div class="col-md-2">
@@ -20,20 +30,26 @@
             End Date
         </th>
         <th>
-            Room number
+            Number of Beds
+        </th>
+        <th>
+            Quality
         </th>
     </tr>
 
-@foreach (var item in Model) {
+@foreach (var item in Model.Reservations) {
     <tr>
         <td>
-            @Html.DisplayFor(modelItem => item.start_time)
+            @Html.DisplayFor(modelItem => item.Start)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.end_time)
+            @Html.DisplayFor(modelItem => item.End)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.room.id)
+            @Html.DisplayFor(modelItem => item.Beds)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Quality)
         </td>
     </tr>
 }

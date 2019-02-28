@@ -34,14 +34,14 @@ namespace Desktop.AddWindows
                 user user;
                 if(!users.Any())
                 {
-                    user = CreateUser(userEmail.Text);
+                    user = userService.Create(userEmail.Text);
                 }
                 else
                 {
                     user = users.First();
                 }
 
-                var res = CreateReservation(startDate.SelectedDate.Value.Date, endDate.SelectedDate.Value.Date, 
+                var res = reservationService.CreateReservation(startDate.SelectedDate.Value.Date, endDate.SelectedDate.Value.Date, 
                                                                         user.id, (int) roomsList.SelectedItem);
                 reservationService.Add(res);
 
@@ -90,25 +90,6 @@ namespace Desktop.AddWindows
             {
                 roomsList.Items.Add(r.id);
             }
-        }
-
-        private user CreateUser(string email)
-        {
-            var user = new user();
-            user.email = email;
-            user.password = "";
-            userService.Add(user);
-            return user;
-        }
-
-        private reservation CreateReservation(DateTime startTime, DateTime endTime, int userId, int roomId)
-        {
-            var res = new reservation();
-            res.end_time = endTime;
-            res.start_time = startTime;
-            res.user_id = userId;
-            res.room_id = roomId;
-            return res;
         }
 
         private void displayError(string error)

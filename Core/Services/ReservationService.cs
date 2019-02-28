@@ -52,5 +52,15 @@ namespace Core.Services
         {
             return db.reservations;
         }
+
+        public reservation CreateReservation(DateTime startTime, DateTime endTime, int userId, int roomId)
+        {
+            var res = new reservation();
+            res.end_time = endTime;
+            res.start_time = startTime;
+            res.user_id = userId;
+            res.room_id = roomId;
+            return res;
+        }
     }
 }

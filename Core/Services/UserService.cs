@@ -1,16 +1,33 @@
-﻿using System;
+﻿using Core.Models;
+using System;
 using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Core.Models;
 
 namespace Core.Services
 {
     public class UserService : IUserService
     {
         private BookingEntities db = new BookingEntities();
+
+
+        public user CreateIfAbsent(string email)
+        {
+            var users = FindEmail(email);
+            var user = users.Any() ? users.First() : Create(email);
+            return user;
+        }
+
+        public user Create(string email)
+        {
+            var user = new user
+            {
+                email = email,
+                password = ""
+            };
+            Add(user);
+            return user;
+        }
 
         public void Add(user user)
         {

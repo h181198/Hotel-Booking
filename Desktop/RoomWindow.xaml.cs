@@ -37,8 +37,8 @@ namespace Desktop
                 isNumber = false;
             }
 
-            if(isNumber) {
-                room r = roomService.Find(id);
+            room r = roomService.Find(id);
+            if(isNumber && (r != null)) {
                 roomList.Items.Clear();
                 AddToList(r);
             }

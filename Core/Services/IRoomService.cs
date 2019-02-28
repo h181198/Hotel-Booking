@@ -2,9 +2,6 @@
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Core.Services
 {
@@ -31,6 +28,11 @@ namespace Core.Services
         List<room> FindRoomsFromBeds(int beds);
 
         /**
+         * Update a rooms status
+         **/
+        void UpdateStatus(string status, room room);
+
+        /**
          * Delete the room from the database.
          **/
         void Delete(room room);
@@ -39,5 +41,10 @@ namespace Core.Services
          * Find all available rooms in a timeinterval.
          **/
         List<room> FindAvailable(DateTime startTime, DateTime endTime);
+
+        /**
+         * Create a new room
+         **/
+        room CreateRoom(int beds, int roomNumber, string quality, string status);
     }
 }

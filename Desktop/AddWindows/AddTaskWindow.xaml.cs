@@ -1,18 +1,8 @@
 ﻿using Core.Models;
 using Core.Services;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace Desktop.AddWindows
 {
@@ -48,12 +38,40 @@ namespace Desktop.AddWindows
 
         private void AddClicked(object sender, RoutedEventArgs e)
         {
-            //TODO implement add method
+            if(isValidValues())
+            {
+                if(tasksList.SelectedItem.ToString().Equals("Cleaning"))
+                {
+                    roomService.UpdateStatus("Unclean", roomService.Find((int)roomsList.SelectedItem));
+                }
+
+                var task = taskService.CreateTask(tasksList.SelectedItem.ToString(), (int) roomsList.SelectedItem, description.Text);
+                taskService.Add(task);
+                this.Close();
+            }
         }
 
         private void CancelClicked(object sender, RoutedEventArgs e)
         {
             this.Close();
+        }
+
+        private bool isValidValues()
+        {
+            bool isValid = true;
+            displayError("");
+            if (roomsList.SelectedItem == null || tasksList.SelectedItem == null)
+            {
+                isValid = false;
+                displayError("Please select a room or/and type");
+            }
+
+            return isValid;
+        }
+
+        private void displayError(string error)
+        {
+            errorsBox.Text += error + "\n";
         }
     }
 }

@@ -41,5 +41,10 @@ namespace Core.Services
          * Delete the reservation from the database.
          **/
         void Delete(reservation reservation);
+
+        /**
+         * Create a new reservation
+         **/
+        reservation CreateReservation(DateTime startTime, DateTime endTime, int userId, int roomId);
     }
 }

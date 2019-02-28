@@ -8,12 +8,15 @@
         Title="AddTaskWindow" Height="450" Width="557.317">
     <Grid>
         <TextBlock HorizontalAlignment="Left" Margin="107,40,0,0" TextWrapping="Wrap" Text="Create a new task for a room" VerticalAlignment="Top" Width="342" Height="27"/>
-        <TextBlock HorizontalAlignment="Left" Margin="107,88,0,0" TextWrapping="Wrap" Text="Select room" VerticalAlignment="Top" Width="99" Height="22"/>
+        <TextBlock HorizontalAlignment="Left" Margin="102,88,0,0" TextWrapping="Wrap" Text="Select room" VerticalAlignment="Top" Width="99" Height="22"/>
         <ComboBox x:Name="roomsList" HorizontalAlignment="Left" Margin="221,88,0,0" VerticalAlignment="Top" Width="120"/>
-        <TextBlock HorizontalAlignment="Left" Margin="107,115,0,0" TextWrapping="Wrap" Text="Select start date" VerticalAlignment="Top" Height="24" Width="99"/>
+        <TextBlock HorizontalAlignment="Left" Margin="102,115,0,0" TextWrapping="Wrap" Text="Select type" VerticalAlignment="Top" Height="24" Width="99"/>
         <ComboBox x:Name="tasksList" HorizontalAlignment="Left" Margin="221,117,0,0" VerticalAlignment="Top" Width="120"/>
+        <TextBlock HorizontalAlignment="Left" Margin="102,144,0,0" TextWrapping="Wrap" Text="Add short description" VerticalAlignment="Top" Width="119"/>
+        <TextBox x:Name="description" HorizontalAlignment="Left" Height="50" Margin="221,144,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
 
-        <TextBox x:Name="errorsBox" HorizontalAlignment="Left" Height="210" Margin="107,199,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="244"/>
+
+        <TextBox x:Name="errorsBox" HorizontalAlignment="Left" Height="210" Margin="102,199,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="239"/>
         <Button Content="Cancel" Margin="0,0,90,10" Height="20" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="75" Click="CancelClicked"/>
         <Button Content="Add" Margin="0,0,10,10" Height="20" VerticalAlignment="Bottom" HorizontalAlignment="Right" Width="75" Click="AddClicked"/>
 
